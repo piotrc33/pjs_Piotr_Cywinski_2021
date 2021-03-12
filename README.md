@@ -9,6 +9,9 @@ Jeśli wystarczy czasu chciałbym wzbogacić chat o możliwość wykonania szybk
 ## Zalety
 - Kontakt ze znajomymi
 - Prosta obsługa
+- Podstawowe formatowanie tekstu
+- Historia rozmów
+- Wyszukiwarka użytkowników
 
 ## Wady
 - Brak czatów grupowych
