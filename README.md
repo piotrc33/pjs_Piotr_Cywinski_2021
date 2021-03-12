@@ -14,6 +14,15 @@ Jeśli wystarczy czasu chciałbym wzbogacić chat o możliwość wykonania szybk
 - Brak czatów grupowych
 - Brak wysyłania zdjęć
 
+## Kroki do wykonania
+- Ekran główny
+- Ekran logowania
+- System logowania
+- System wyszukiwania
+- System edycji konta/ zmiany awataru
+- System przesyłania wiadomości
+- Historia wiadomości
+
 ## Technologie:
 - React
 - node.js
