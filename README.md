@@ -26,7 +26,7 @@ Jeśli wystarczy czasu chciałbym wzbogacić chat o możliwość wykonania szybk
 - System przesyłania wiadomości
 - Historia wiadomości
 
-## Technologie:
+## Technologie(wybrane z powodu chęci nauki oraz uchodzą one za wydajne):
 - React
 - node.js
 - Firebase
