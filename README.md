@@ -18,13 +18,17 @@ Jeśli wystarczy czasu chciałbym wzbogacić chat o możliwość wykonania szybk
 - Brak wysyłania zdjęć
 
 ## Kroki do wykonania
-- Ekran główny
-- Ekran logowania
-- System logowania
-- System wyszukiwania
-- System edycji konta/ zmiany awataru
-- System przesyłania wiadomości
-- Historia wiadomości
+- (do 26.03)  Ekran główny          
+- (do 2.04)   Ekran logowania       
+- (do 9.04)   Design chatu          
+- (do 16.04)  Formatowanie tekstu w chacie 
+- (do 23.04)  System logowania      
+- (do 30.04)  System wyszukiwania   
+- (do 7.05)   System edycji konta/ zmiany awataru 
+- (do 14.05)  System przesyłania wiadomości 
+- (do 21.05)  Historia wiadomości    
+- Następnie próba zaimplementowania rysowanych wiadomości
+- 20.06.21 termin ostateczny najpóźniejszy
 
 ## Technologie(wybrane z powodu chęci nauki oraz uchodzą one za wydajne):
 - React
