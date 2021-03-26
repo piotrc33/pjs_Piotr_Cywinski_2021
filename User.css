@@ -1,0 +1,9 @@
+.user{
+    width: 32%;
+    height: 78%;
+    border: 1px solid black;
+    float: right;
+    margin: 2px;
+    background: rgb(16, 31, 4);
+    color: orange;
+}
