@@ -1,0 +1,11 @@
+.chat{
+    width: 65%;
+    
+    height: 78%;
+    margin: 2px;
+    /* border: 1px solid black; */
+    float: left;
+    /* background: transparent; */
+    background: rgb(214, 219, 214);
+    opacity: 60%;
+}
