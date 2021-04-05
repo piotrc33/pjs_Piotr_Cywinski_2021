@@ -8,6 +8,9 @@
     color: orange;
     display: flex;
     flex-wrap: wrap;
+    flex-direction:column;
+    justify-content: flex-start;
+    text-decoration: none;
 }
 
 .image{
@@ -15,5 +18,13 @@
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    margin: auto;
+    margin: 5px auto;
+}
+
+P{
+    align-items: flex-end;
+    color: orange;
+    font-size:large;
+    font-weight: bold;
+    
 }

@@ -16,7 +16,7 @@
 }
 
 .chat, .user{
-  display: inline-block;
+  /* display: inline-block; */
   min-height: 500px;
 }
 
