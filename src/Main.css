@@ -8,15 +8,24 @@
 
 
 .body{
-  /* height: 1000px; */
   height: 100vh;
   background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
   background-repeat: repeat;
-
 }
 
-.chat, .user{
-  /* display: inline-block; */
-  min-height: 500px;
+.btn{
+  border: none;
+  background: rgb(16, 31, 4);;
+  color: orange;
+  cursor: pointer;
 }
 
+.field{
+  background: rgb(214, 219, 214);
+  border: none;
+  font-size: large;
+}
+.field:focus{
+  background: white;
+  border: none;
+}

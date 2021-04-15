@@ -1,11 +1,34 @@
-.chat{
-    width: 65%;
-    
+/* Całe okienko chatow, jednego czatu, wyszukiwania,  */
+.chat-window{
+    width: 65%;  
     height: 78%;
     margin: 2px;
-    /* border: 1px solid black; */
     float: left;
-    /* background: transparent; */
-    background: rgb(214, 219, 214);
-    opacity: 60%;
+    background: rgba(214, 219, 214,0.5);
+}
+/* pojedynczy chat */
+.chat{
+    padding: 10px;
+    display: flex;
+    border: 1px solid #331e0d;
+}
+/* WSZYSTKO WEWNATRZ CZATU JEST FLEX */
+.min-user-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.chat-username{
+    margin-left: 5px;
+    color: #331e0d;
+    font-weight: bold;
+}
+#info{
+    text-align:center;
+    font-size: 24px;
+    font-weight: bold;
+}
+.userDesc{
+    /* align-self: center; */
+    margin-left: 20px;
 }

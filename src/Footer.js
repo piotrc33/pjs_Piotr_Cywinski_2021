@@ -4,8 +4,8 @@ import './Footer.css'
 function Footer(){
     return(
         <div className="footer">
-            Skontaktuj się z nami
-            Śledź nas na mediach społecznościowych
+            <b>Kontakt: </b>
+            <b>pro-chat@gmail.com</b>
         </div>
     );
 }

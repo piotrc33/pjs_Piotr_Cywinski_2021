@@ -8,7 +8,7 @@ function Search(){
         <div className="logo-search">
             <Logo /> 
             <form>
-                <input type="text" id="field" placeholder="search for people!" />
+                <input type="text" id="sField" className="field" placeholder="search for people!" />
                 <button id="sButton">
                      <img id="lupa" src={sIcon} alt="search-icon" /> 
                 </button>
