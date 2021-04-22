@@ -20,15 +20,15 @@ Jeśli wystarczy czasu chciałbym wzbogacić chat o możliwość wykonania szybk
 ## Kroki do wykonania
 - (do 26.03)  Ekran główny          
 - (do 2.04)   Ekran logowania       
-- (do 9.04)   Design chatu          
-- (do 16.04)  Formatowanie tekstu w chacie 
-- (do 23.04)  System logowania      
-- (do 30.04)  System wyszukiwania   
-- (do 7.05)   System edycji konta/ zmiany awataru 
-- (do 14.05)  System przesyłania wiadomości 
-- (do 21.05)  Historia wiadomości    
-- Następnie próba zaimplementowania rysowanych wiadomości
-- 20.06.21 termin ostateczny najpóźniejszy
+- (do 9.04)   Ogólny design okna chatu          
+- (do 23.04)  System logowania   
+- (do 30.04)  System edycji konta/zmiany awataru    
+- (do 10.05)  System wyszukiwania użytkowników 
+- (do 20.05)  System przesyłania wiadomości 
+- (do 27.05)  Wyświetlanie historii wiadomości
+- (do 07.06)  Formatowanie tekstu w chacie i design chatu
+- (do 11-18.06)  Poprawki wyglądu i funkcjonalności
+- 11-18.06.21 termin ostateczny najpóźniejszy
 
 ## Technologie(wybrane z powodu chęci nauki oraz uchodzą one za wydajne):
 - React
