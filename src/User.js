@@ -53,6 +53,14 @@ function User(props){
             });
     };
 
+    const handleEdit = () => {
+        return db.collection('users').doc(user.uid).set({
+            desc: userDesc,
+            imageUrl: userImageUrl,
+            nick: userNick
+        })
+    };
+
     const handleSignUp = () => {
         clearErrors();
         clearInputs();
@@ -84,6 +92,7 @@ function User(props){
         setLoggedState("notLogged");
     };
 
+    // WSZYSTKIE DANE UAKTUALNIAJĄ SIĘ TUTAJ NA BIEŻĄCO
     const authListener = () => {
         fire.auth().onAuthStateChanged((user) => {
             if(user){
@@ -198,13 +207,52 @@ function User(props){
             return(
                 <div className="user">
                     <div className="image">
-                        <img id="user-img" src="https://i.guim.co.uk/img/media/684c9d087dab923db1ce4057903f03293b07deac/205_132_1915_1150/master/1915.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=14a95b5026c1567b823629ba35c40aa0" />
+                        <img id="user-img" src={userImageUrl} />
                     </div>
-                    <p id="username"> piotrek</p>
+                    <p id="username"> {userNick} </p>
                     <div id="description"> {userDesc} </div>
+                    <button id="editBtn" onClick={() => setLoggedState("editing")} >EDIT</button>
 
                     <p onClick={handleSignOut}>SIGN OUT</p>
 
+                </div>
+            );
+        case "editing":
+            return(
+                <div className="user" >
+                <div className="login">
+                <label>Your Photo URL</label>                     
+                <input 
+                    type="text" 
+                    required 
+                    value={userImageUrl}
+                    className="field"
+                    placeholder="URL"
+                    onChange = { e => {setUserImageUrl(e.target.value)} }
+                />
+                <label>Your Nick</label> 
+                <input 
+                    type="text" 
+                    required 
+                    value={userNick}
+                    className="field"
+                    placeholder="Nick"
+                    onChange = { e => {setUserNick(e.target.value)} }
+                />
+                <label>Your Description</label> 
+                <input 
+                    type="text" 
+                    required 
+                    value={userDesc}
+                    className="field"
+                    placeholder="Description"
+                    onChange = { e => {setUserDesc(e.target.value)} }
+                />
+                <button onClick={() => {
+                    handleEdit();
+                    setLoggedState("logged");
+                }} >SAVE</button>
+                </div>
                 </div>
             );
         default: return;
