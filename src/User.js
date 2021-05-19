@@ -1,14 +1,12 @@
 import React from 'react';
 import './User.css';
-//import { Link } from 'react-router-dom';
 import {useState, useEffect} from 'react';
-//import { BrowserRouter as Router, Route } from 'react-router-dom';
 import fire from './fire';
 
 function User(props){
     // staty obslugujace logowanie
     const [loggedState, setLoggedState] = useState("notLogged");
-    const [user, setUser] = useState('');
+    //const [user, setUser] = useState(''); // ten state przetrzymuje id uzytkownika
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -20,11 +18,17 @@ function User(props){
     const [userNick, setUserNick] = useState('');
 
     const db = fire.firestore();
+    const user = props.user;
+    const setUser = (newUser) => {props.handleUser(newUser)};
+    const setChatView = chatView => {
+        props.handleChatView(chatView);
+    };
     
 
     const clearInputs = () => {
         setEmail('');
         setPassword('');
+        setUserNick('');
     };
 
     const clearErrors = () => {
@@ -71,7 +75,23 @@ function User(props){
                 return db.collection('users').doc(cred.user.uid).set({
                     desc: "",
                     imageUrl: "",
-                    nick: ""
+                    nick: userNick,
+                    messages: [
+                        {
+                            text: "yoyoyo"
+                        }
+                    ]
+
+                });
+            })
+            // tutaj będzie część poświęcona tworzeniu folderu messages dla nowego użytkownika
+            .then(cred => {
+                return db.collection('users').doc(cred.user.uid).collection('messages').doc(cred.user.uid).set({
+                    messages: [
+                        {
+
+                        }
+                    ]
                 });
             })
             .catch(err => {            
@@ -90,6 +110,7 @@ function User(props){
     const handleSignOut = () => {
         fire.auth().signOut();
         setLoggedState("notLogged");
+        setChatView("none");
     };
 
     // WSZYSTKIE DANE UAKTUALNIAJĄ SIĘ TUTAJ NA BIEŻĄCO
@@ -105,9 +126,11 @@ function User(props){
                 setLoggedState("logged");
             }else{
                 setUser('');
+                setUserNick('');
                 setLoggedState("notLogged");
             }
         })
+        //console.log(user);
     };
 
     useEffect(() => {
@@ -177,6 +200,19 @@ function User(props){
                 />
                 <p>{emailError}</p>
 
+                
+                <label>Nick</label>                     
+                <input 
+                    type="text" 
+                    required 
+                    value={userNick}
+                    className="field"
+                    name="nick"
+                    placeholder="nick"
+                    onChange = { e => {setUserNick(e.target.value)} }
+                />
+                {/* <p>{emailError}</p>  tu można by zrobić sprawdzenie czy nick już nie jest zajęty ale po co xDDD*/}
+
                 <label>Password</label>
                 <input 
                     type="password" 
@@ -188,13 +224,16 @@ function User(props){
                     onChange = { e => setPassword(e.target.value)}
                 />
                 <p>{passwordError}</p>
-                <label>Repeat Password</label>
+
+
+
+                {/* <label>Repeat Password</label>
                 <input 
                     type="password" 
                     className="field" 
                     name="repeatPassword" 
                     placeholder="repeat password" 
-                />
+                /> */}
 
                 <button className="btn" onClick={handleSignUp} >SIGN UP!</button>
 

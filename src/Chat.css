@@ -11,6 +11,7 @@
     padding: 10px;
     display: flex;
     border: 1px solid #331e0d;
+    cursor: pointer;
 }
 /* WSZYSTKO WEWNATRZ CZATU JEST FLEX */
 .min-user-img{
@@ -31,4 +32,9 @@
 .userDesc{
     /* align-self: center; */
     margin-left: 20px;
+}
+
+.to{
+    width: 100%;
+    height: 10%;
 }
