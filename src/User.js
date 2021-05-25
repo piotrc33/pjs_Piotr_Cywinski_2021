@@ -43,6 +43,9 @@ function User(props){
         fire
             .auth()
             .signInWithEmailAndPassword(email, password)
+            .then( () => {
+                setChatView("all");
+            })
             .catch(err => {
                 switch(err.code){
                     case "auth/invalid-email":             
@@ -76,22 +79,6 @@ function User(props){
                     desc: "",
                     imageUrl: "",
                     nick: userNick,
-                    messages: [
-                        {
-                            text: "yoyoyo"
-                        }
-                    ]
-
-                });
-            })
-            // tutaj będzie część poświęcona tworzeniu folderu messages dla nowego użytkownika
-            .then(cred => {
-                return db.collection('users').doc(cred.user.uid).collection('messages').doc(cred.user.uid).set({
-                    messages: [
-                        {
-
-                        }
-                    ]
                 });
             })
             .catch(err => {            
@@ -121,13 +108,15 @@ function User(props){
                 db.collection('users').doc(user.uid).get().then(doc => {
                     setUserDesc( doc.data().desc );
                     setUserImageUrl( doc.data().imageUrl );
-                    setUserNick( doc.data().nick );
+                    setUserNick( doc.data().nick );          
                 });
+                setChatView("all");
                 setLoggedState("logged");
             }else{
                 setUser('');
                 setUserNick('');
                 setLoggedState("notLogged");
+                setChatView("none");
             }
         })
         //console.log(user);
