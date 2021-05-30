@@ -3,6 +3,7 @@ import './ChatWindow.css'
 import { useState } from 'react';
 import Chat from "./Chat.js";
 
+
 function ChatWindow(props) {
  
     const user = props.nazwa;
@@ -29,7 +30,7 @@ function ChatWindow(props) {
         case "all":
             return (
                 <div className="chat-window">
-                    <p id="info">Twoje ostatnie wiadomości</p>
+                    <p id="info">Your recent chats</p>
                     <div className="chat" onClick={() => {
                         setChatView("chat");
                         setTo("kondziu");

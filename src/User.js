@@ -2,6 +2,9 @@ import React from 'react';
 import './User.css';
 import {useState, useEffect} from 'react';
 import fire from './fire';
+import {GoSignOut, GoPencil, GoSignIn} from 'react-icons/go';
+import {AiOutlineForm} from 'react-icons/ai';
+import {HiArrowLeft, HiArrowRight} from 'react-icons/hi'
 
 function User(props){
     // staty obslugujace logowanie
@@ -68,6 +71,17 @@ function User(props){
         })
     };
 
+    const createKeywords = nick => {
+        const array = [];
+        let nextKeyword = '';
+        nick.split('').forEach(letter => {
+            nextKeyword += letter;
+            array.push(nextKeyword);
+        });
+        //console.log(array);
+        return array;
+    }
+
     const handleSignUp = () => {
         clearErrors();
         clearInputs();
@@ -75,10 +89,12 @@ function User(props){
             .auth()
             .createUserWithEmailAndPassword(email, password) // tutaj trzeba bedzie dac then zeby utworzyc dokument zawierajacy informacje o uzytkowniku
             .then(cred => {
+                const nickKeywords = createKeywords(userNick);
                 return db.collection('users').doc(cred.user.uid).set({
+                    keywords: nickKeywords,
                     desc: "",
                     imageUrl: "",
-                    nick: userNick,
+                    nick: userNick
                 });
             })
             .catch(err => {            
@@ -136,8 +152,12 @@ function User(props){
                     <p id="username"> piotrek</p>
                     <div id="description"> witam wszystkich</div>
 
-                    <p id="signin" onClick={() => setLoggedState("signIn") }>SIGN IN</p>
-                    <p id="signup" onClick={() => setLoggedState("signUp")} >SIGN UP</p>
+                    <p id="signin" onClick={() => setLoggedState("signIn") }>
+                        SIGN IN <GoSignIn />
+                    </p>
+                    <p id="signup" onClick={() => setLoggedState("signUp")} >
+                        SIGN UP <AiOutlineForm />
+                    </p>
 
                 </div>
             );
@@ -166,9 +186,13 @@ function User(props){
                     />
                     <p className="errorMsg">{passwordError}</p>
 
-                    <input onClick={handleSignIn} type="submit" value="SIGN IN!" className="btn" />
+                    <button onClick={handleSignIn} type="submit" className="btn" >
+                        SIGN IN! <HiArrowRight /> 
+                    </button>
 
-                    <p onClick={() => setLoggedState("notLogged")} >GO BACK</p> 
+                    <p onClick={() => setLoggedState("notLogged")} >
+                        <HiArrowLeft /> GO BACK
+                    </p> 
                 </div>
                 </div>
             );
@@ -214,19 +238,13 @@ function User(props){
                 />
                 <p>{passwordError}</p>
 
+                <button className="btn" onClick={handleSignUp} >
+                    SIGN UP! <HiArrowRight />
+                </button>
 
-
-                {/* <label>Repeat Password</label>
-                <input 
-                    type="password" 
-                    className="field" 
-                    name="repeatPassword" 
-                    placeholder="repeat password" 
-                /> */}
-
-                <button className="btn" onClick={handleSignUp} >SIGN UP!</button>
-
-                <p onClick={() => setLoggedState("notLogged")} >GO BACK</p> 
+                <p onClick={() => setLoggedState("notLogged")} >
+                    <HiArrowLeft /> GO BACK
+                </p> 
 
                 </div>
                 </div>
@@ -239,9 +257,15 @@ function User(props){
                     </div>
                     <p id="username"> {userNick} </p>
                     <div id="description"> {userDesc} </div>
-                    <button id="editBtn" onClick={() => setLoggedState("editing")} >EDIT</button>
+                    <button id="editBtn" onClick={() => setLoggedState("editing")} >
+                        EDIT <GoPencil />
+                    </button>
 
-                    <p onClick={handleSignOut}>SIGN OUT</p>
+                    <p onClick={handleSignOut}>
+                        SIGN OUT <GoSignOut />
+                    </p>
+
+                    {/* <button onClick={createKeywords()} >click</button> */}
 
                 </div>
             );

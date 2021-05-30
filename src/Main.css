@@ -5,7 +5,10 @@
   height: 10px;
   padding: 100px;
 } */
-
+:root{
+  --mainColor: rgb(16, 31, 4);
+  --backgroundColor: #38f9d7;
+}
 
 .body{
   height: 100vh;
@@ -15,7 +18,7 @@
 
 .btn{
   border: none;
-  background: rgb(16, 31, 4);;
+  background: var(--mainColor);
   color: orange;
   cursor: pointer;
 }

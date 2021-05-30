@@ -18,14 +18,13 @@
     padding-left: 10px;
     width: 93%; 
 }
-input{
+/* input{
     height: 80%;
     vertical-align: middle;
     float: left;
     min-height: 50px;
-    
-}
-form{
+} */
+.searchBox{
     text-align: center;
     border: 1px solid black;
     height: 80%;
