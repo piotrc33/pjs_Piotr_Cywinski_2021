@@ -10,7 +10,7 @@ function ChatWindow(props) {
     const chatView = props.chatView;
     const setChatView = props.handleChatView;
 
-    const [to, setTo] = useState('');
+    const [to, setTo] = useState(props.to);
     
 
     // zeby przełącząć się między czatami można zrobić funkcję typu handleChats
@@ -47,7 +47,7 @@ function ChatWindow(props) {
                         <p className="userDesc" >mój dobry znajomy</p>
                     </div>
 
-                    <h1>{user}</h1>
+                    {/* <h1>{user}</h1> */}
 
                 </div>
             );

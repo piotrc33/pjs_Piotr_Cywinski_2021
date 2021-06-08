@@ -16,6 +16,7 @@ function Main(){
     const [user, setUser] = useState('');
     // przetrzymuje stan chatu
     const [chatView, setChatView] = useState('none');
+    const [to, setTo] = useState('');
 
 
     const handleUser = newUser => {
@@ -28,14 +29,11 @@ function Main(){
 
     return(
         <div className="body">   
-            <Router>
-                {/* w props nie mozna przekazywac obiektow */}
-                <Search />
-                <ChatWindow nazwa={user.uid} chatView={chatView} handleChatView={handleChatView} />
-                <User user={user} handleUser={handleUser} handleChatView={handleChatView} />
-                <Footer />
-            </Router>
-            
+            {/* w props nie mozna przekazywac obiektow */}
+            <Search setTo={setTo} to={to} />
+            <ChatWindow to={to} nazwa={user.uid} chatView={chatView} handleChatView={handleChatView} />
+            <User user={user} handleUser={handleUser} handleChatView={handleChatView} />
+            <Footer /> 
         </div>
         
     );

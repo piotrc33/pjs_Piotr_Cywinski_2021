@@ -26,6 +26,7 @@ function User(props){
     const setChatView = chatView => {
         props.handleChatView(chatView);
     };
+    const defaultImg = "https://icon-library.com/images/default-profile-icon/default-profile-icon-8.jpg"
     
 
     const clearInputs = () => {
@@ -92,8 +93,8 @@ function User(props){
                 const nickKeywords = createKeywords(userNick);
                 return db.collection('users').doc(cred.user.uid).set({
                     keywords: nickKeywords,
-                    desc: "",
-                    imageUrl: "",
+                    desc: "hey!",
+                    imageUrl: defaultImg,
                     nick: userNick
                 });
             })
