@@ -12,10 +12,13 @@ function Search(props){
     const [searchResultsView, setSearchResultsView] = useState(false);
     const [results, setResults] = useState('');
     let documents = [];
+    const { to, setTo, handleChatView } = props;
+    const [searchTerm, setSearchTerm] = useState(' ');
 
     const setChat = (toUser) => {
-        props.setTo(toUser);
-        console.log(props.to);
+        setTo(toUser);
+        handleChatView("chat");
+        //console.log(to);
     }
 
     // wyszukuje użytkowników po nicku i zwraca ich dokumenty
@@ -47,7 +50,7 @@ function Search(props){
             const nick = doc.data().nick;
             // const docId = doc.id;
             //console.log(nick);
-            return (<div className="result" onClick={() => setChat(nick)} >
+            return (<div key={nick} className="result" onMouseDown={() => setChat(nick)} >
                 <img src={doc.data().imageUrl} alt="result-user-img" className="result-img" />
                 <div className="result-nick" >{nick}</div>
                 <div className="result-desc" >{doc.data().desc}</div>      
@@ -58,6 +61,18 @@ function Search(props){
         //console.log(documents[0].data());
     };
 
+    // zapobiega wysyłaniu zbyt dużej ilości requestów szukania
+    useEffect(() => {
+        // gdy komponent zostanie zmieniony
+        const typingTimeout = setTimeout(() => {
+            searchByNick(searchTerm);
+        }, 500);
+        // gdy komponent zostanie usuniety
+        return () => {
+            clearTimeout(typingTimeout);
+        }
+    }, [searchTerm])// <- co podlega sprawdzeniu updatow
+
     return(
     <div className="logo-search">
         <Logo /> 
@@ -67,8 +82,9 @@ function Search(props){
                 className="field"
                 placeholder="search for people!"
                 onChange={event => {
-                    //setSearchText(event.target.value);
-                    searchByNick(event.target.value);
+                    setSearchTerm(event.target.value);
+                    console.log(searchTerm);
+                    //searchByNick(event.target.value);
                 }}
                 onFocus={handleFocus}
                 onBlur={handleFocus}/>
@@ -78,7 +94,7 @@ function Search(props){
                 <FaSearch/>
             </button>
 
-            <div id="searchResults" style={{display: searchResultsView ? "inline" : "inline"}} >
+            <div id="searchResults" style={{display: searchResultsView ? "inline" : "none"}} >
                 <div className="results">
                     {results}
                 </div>

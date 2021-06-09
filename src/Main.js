@@ -25,13 +25,14 @@ function Main(){
 
     const handleChatView = chatView => {
         setChatView(chatView);
+        //console.log(chatView);
     }
 
     return(
         <div className="body">   
             {/* w props nie mozna przekazywac obiektow */}
-            <Search setTo={setTo} to={to} />
-            <ChatWindow to={to} nazwa={user.uid} chatView={chatView} handleChatView={handleChatView} />
+            <Search setTo={setTo} to={to} handleChatView={handleChatView} />
+            <ChatWindow to={to} setTo={setTo} nazwa={user.uid} chatView={chatView} handleChatView={handleChatView} />
             <User user={user} handleUser={handleUser} handleChatView={handleChatView} />
             <Footer /> 
         </div>

@@ -10,8 +10,11 @@
 .chat{
     padding: 10px;
     display: flex;
-    border: 1px solid #331e0d;
+    border-bottom: 1px solid #331e0d;
     cursor: pointer;
+}
+.chat:first-of-type{
+    border-top: 1px solid #331e0d;
 }
 /* WSZYSTKO WEWNATRZ CZATU JEST FLEX */
 .min-user-img{

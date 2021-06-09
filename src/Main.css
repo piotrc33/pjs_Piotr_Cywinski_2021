@@ -27,6 +27,7 @@
   background: rgb(214, 219, 214);
   border: none;
   font-size: large;
+  outline: none;
 }
 .field:focus{
   background: white;

@@ -5,12 +5,14 @@ import Chat from "./Chat.js";
 
 
 function ChatWindow(props) {
- 
-    const user = props.nazwa;
-    const chatView = props.chatView;
-    const setChatView = props.handleChatView;
 
-    const [to, setTo] = useState(props.to);
+    const { nazwa:user, chatView, handleChatView:setChatView, to, setTo} = props;
+ 
+    // const user = props.nazwa;
+    // const chatView = props.chatView;
+    // const setChatView = props.handleChatView;
+
+    // const [to, setTo] = useState(props.to);
     
 
     // zeby przełącząć się między czatami można zrobić funkcję typu handleChats
@@ -29,13 +31,13 @@ function ChatWindow(props) {
     switch (chatView) {
         case "all":
             return (
+                // tutaj trzeba bedzie zrobić mapę po uzytkownikach, do ktorych to jest ustawione na id aktualnego usera
                 <div className="chat-window">
                     <p id="info">Your recent chats</p>
                     <div className="chat" onClick={() => {
                         setChatView("chat");
                         setTo("kondziu");
-                    }
-                    }>
+                    }}>
                         <img className="min-user-img" src="https://i.guim.co.uk/img/media/684c9d087dab923db1ce4057903f03293b07deac/205_132_1915_1150/master/1915.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=14a95b5026c1567b823629ba35c40aa0" />
                         <p className="chat-username"> {chats[0].nick} </p>
                         <p className="userDesc" > hejka </p>
@@ -54,8 +56,7 @@ function ChatWindow(props) {
         case "chat":
             return (
                 <div className="chat-window">
-                    <Chat to={to} setChatView={setChatView} user={user} />
-                
+                    <Chat to={to} setChatView={setChatView} user={user} />      
                 </div>
             );
         case "none":
