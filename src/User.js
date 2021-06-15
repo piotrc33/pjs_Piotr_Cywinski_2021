@@ -74,6 +74,7 @@ function User(props){
         })
     };
 
+    // tworzy słowa kluczowe do wyszukiwania użytkowników
     const createKeywords = nick => {
         const array = [];
         let nextKeyword = '';
@@ -81,7 +82,6 @@ function User(props){
             nextKeyword += letter;
             array.push(nextKeyword);
         });
-        //console.log(array);
         return array;
     }
 

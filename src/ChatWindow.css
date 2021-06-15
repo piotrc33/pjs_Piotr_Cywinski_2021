@@ -5,6 +5,7 @@
     margin: 2px;
     float: left;
     background: rgba(214, 219, 214,0.5);
+    overflow: auto;
 }
 /* pojedynczy chat */
 .chat{
@@ -12,6 +13,9 @@
     display: flex;
     border-bottom: 1px solid #331e0d;
     cursor: pointer;
+}
+.chat:hover{
+    background: rgba(0, 0, 0, 0.1);
 }
 .chat:first-of-type{
     border-top: 1px solid #331e0d;
@@ -36,3 +40,4 @@
     /* align-self: center; */
     margin-left: 20px;
 }
+

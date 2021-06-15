@@ -8,6 +8,7 @@
 :root{
   --mainColor: rgb(16, 31, 4);
   --backgroundColor: #38f9d7;
+  --fieldsColor: rgb(214, 219, 214);
 }
 
 .body{
@@ -24,7 +25,7 @@
 }
 
 .field{
-  background: rgb(214, 219, 214);
+  background: var(--fieldsColor);
   border: none;
   font-size: large;
   outline: none;
