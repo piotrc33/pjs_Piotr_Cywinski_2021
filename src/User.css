@@ -1,5 +1,6 @@
 .user{
     width: 32%;
+    max-width: 500px;
     height: 78%;
     float: right;
     margin: 2px;
@@ -9,32 +10,33 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction:column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;  
 }
 .image{
+    position: relative;
     width: 60%;
-    height: auto;
     border-radius: 50%;
-    margin: 5px auto;
+    margin: 15px auto;
+    align-self: flex-start;
+    width: 250px;
+    height: 250px;
 }
 #user-img{
+    position: relative;
     border-radius: 50%;
-    width:100%;
-    height:auto;
-}
-.user a,.user p{
-    /* align-self: center; */
-    margin-top: auto;
-    color: orange;
-    font-size:large;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;    
+    width: 250px;
+    height: 250px;
 }
 
 form{
     max-height: 300px;
+}
+
+.form{
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .login{
@@ -43,19 +45,65 @@ form{
     justify-content: center;
     align-items: center;
     align-self: center;
+    /* border: 1px solid red; */
+    margin: auto 0;
+    width: 80%;
 }
-
-/* input{
-    margin: 1px 0px;
-} */
 
 #username{
     margin-top: 0px;
     font-size: 24px;
+    font-weight: bold;
 }
+
+#description{
+    font-style: italic;
+}
+
 #signup{
     margin-top: 0px;
+    cursor: pointer;
 }
+
 #signin{
     margin-bottom: 0;
+    margin-top: 50%;
+    cursor: pointer;
+}
+
+.error{
+    color: red;
+}
+
+.label{
+    align-self: flex-start;
+}
+
+.goBack{
+    cursor: pointer;
+}
+
+.signIn{
+    font-size: 1.3em;
+}
+
+.signUp{
+    font-size: 1.3em;
+}
+
+.signOut{
+    cursor: pointer;
+}
+
+.saveBtn{
+    /* background-color: transparent;
+    color: orange;
+    outline: none;
+    border: none; */
+    font-size: 1.5em;
+}
+
+.editBtn{
+    margin-top: 50%;
+    
 }

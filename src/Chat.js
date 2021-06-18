@@ -13,6 +13,7 @@ function Chat(props) {
     const [italic, setItalic] = useState(false);
     const [underline, setUnderline] = useState(false);
     const [lineThrough, setLineThrough] = useState(false);
+    const [fontSize, setFontSize] = useState(16)
     // state do przechowywania tablicy wiadomości
     // const [messages, setMessages] = useState([]);
 
@@ -30,6 +31,14 @@ function Chat(props) {
         if(italic) styles.push("italic ");
         if(underline) styles.push("underline ");
         if(lineThrough) styles.push("lineThrough ");
+        switch(fontSize) {
+            case "16": styles.push("s16"); break;
+            case "18": styles.push("s18"); break;
+            case "20": styles.push("s20"); break;
+            case "22": styles.push("s22"); break;
+            case "24": styles.push("s24"); break;
+            default: break;
+        }
     }
 
     // dodanie wiadomości do aktualnego statu użytkownika po wysłaniu
@@ -62,7 +71,13 @@ function Chat(props) {
             })
         });
         addMessage();
+        setMessageText('');
     };
+
+    const handleSelectChange = (e) => {
+        setFontSize(e.target.value)
+        console.log(fontSize);
+    }
 
     // funkcja zmienia widok na wszystkie chaty
     const goBack = () => {
@@ -110,9 +125,9 @@ function Chat(props) {
         
 
         <div className="messages-field">
-            <div className="received message">
+            {/* <div className="received message">
                 Received message fjsdfhajksfhjksdhfjkashfjkhsdfhasjkhfjkashdfjk hasjkfhasjkfhjka sdhflsdhfjkashlfkhasdjkfhaklfhjkdashfjks dhfajsk
-            </div>
+            </div> */}
             {
                 
             messages.map(message => {
@@ -123,7 +138,7 @@ function Chat(props) {
                 const styleMes = message.styles;
                 if( (from == user && toMes == toId) || (from == toId && toMes == user))
                     return (
-                        <div className={(toMes == user ? "received message " : "sent message ") + styleMes.map(s => s).join('') }>{message.text}</div>
+                        <div key={message.time} className={(toMes == user ? "received message " : "sent message ") + styleMes.map(s => s).join('') }>{message.text}</div>
                     );
             })
             }
@@ -139,14 +154,23 @@ function Chat(props) {
                 <u>Underline</u></button>
             <button className={(lineThrough?"active ":" ") + "formatBtn"} onClick={() => setLineThrough(!lineThrough) }>
                 <strike>LineThrough</strike></button>
+            <select onChange={handleSelectChange} className="select"> 
+                <option default hidden>Font Size</option>
+                <option value="16" >16</option>
+                <option value="18" >18</option>
+                <option value="20" >20</option>
+                <option value="22" >22</option>
+                <option value="24" >24</option>
+            </select>
         </div>
-
+            
         <div className="send-menu">
             <input 
                 id="message-input"
                 type="text" 
                 className="field"
                 placeholder="type here..."
+                value={messageText}
                 onChange={event => {handleMessageUpdate(event.target.value)}} />
 
             <button 

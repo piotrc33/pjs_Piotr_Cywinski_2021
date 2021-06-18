@@ -40,6 +40,8 @@ function Search(props){
 
     // obsluguje wyswietlanie okna wyników wyszukiwania
     const handleFocus = () => {
+        if(searchResultsView)
+            setResults('');
         setSearchResultsView(!searchResultsView);
     };
 
@@ -77,7 +79,7 @@ function Search(props){
             <input type="text"
                 id="sField"
                 className="field"
-                placeholder="search for people!"
+                placeholder="Search for people!"
                 onChange={event => {
                     setSearchTerm(event.target.value);
                     //console.log(searchTerm);

@@ -2,7 +2,7 @@ import React from 'react';
 import './User.css';
 import {useState, useEffect} from 'react';
 import fire from './fire';
-import {GoSignOut, GoPencil, GoSignIn} from 'react-icons/go';
+import {GoSignOut, GoPencil, GoSignIn, GoMail} from 'react-icons/go';
 import {AiOutlineForm} from 'react-icons/ai';
 import {HiArrowLeft, HiArrowRight} from 'react-icons/hi'
 
@@ -28,7 +28,7 @@ function User(props){
     };
     const defaultImg = "https://icon-library.com/images/default-profile-icon/default-profile-icon-8.jpg";
     const dogImg = "https://i.guim.co.uk/img/media/684c9d087dab923db1ce4057903f03293b07deac/205_132_1915_1150/master/1915.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=14a95b5026c1567b823629ba35c40aa0";
-    
+    const lamaImg = "https://images.pb.pl/filtered/18e95587-0c6c-4a2b-9631-8cacf268517c/e445c707-1300-5bf5-bdbc-623a8c7be66a_w_830.jpg"
 
     const clearInputs = () => {
         setEmail('');
@@ -66,11 +66,14 @@ function User(props){
     };
 
     const handleEdit = () => {
+        const oldMail = "mail@gmail.com";
+        const newKeywords = createKeywords(userNick);
         return db.collection('users').doc(user.uid).set({
             desc: userDesc,
             imageUrl: userImageUrl,
             nick: userNick,
-            //email: email
+            email: oldMail,
+            keywords: newKeywords
         })
     };
 
@@ -129,6 +132,7 @@ function User(props){
                     setUserDesc( doc.data().desc );
                     setUserImageUrl( doc.data().imageUrl );
                     setUserNick( doc.data().nick );          
+                }).catch(err => {
                 });
                 setChatView("all");
                 setLoggedState("logged");
@@ -151,15 +155,15 @@ function User(props){
             return(
                 <div className="user">
                     <div className="image">
-                        <img id="user-img" src="https://i.guim.co.uk/img/media/684c9d087dab923db1ce4057903f03293b07deac/205_132_1915_1150/master/1915.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=14a95b5026c1567b823629ba35c40aa0" />
+                        <img id="user-img" src={dogImg} alt="starting user img" />
                     </div>
-                    <p id="username"> piotrek</p>
-                    <div id="description"> witam wszystkich</div>
+                    <p id="username">YourNickname</p>
+                    <div id="description">YourDescription</div>
 
-                    <p id="signin" onClick={() => setLoggedState("signIn") }>
+                    <p id="signin" className="btn" onClick={() => setLoggedState("signIn") }>
                         SIGN IN <GoSignIn />
                     </p>
-                    <p id="signup" onClick={() => setLoggedState("signUp")} >
+                    <p id="signup" className="btn" onClick={() => setLoggedState("signUp")} >
                         SIGN UP <AiOutlineForm />
                     </p>
 
@@ -169,32 +173,32 @@ function User(props){
             return(
                 <div className="user">
                 <div className="login"> 
-                    <label>Email</label>
+                    <label className="label">Email</label>
                     <input 
                         type="text" 
-                        className="field" 
+                        className="field form" 
                         name="email" 
-                        placeholder="email" 
+                        placeholder="Type in email..." 
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <p className="errorMsg">{emailError}</p>
-                    <label>Password</label>
+                    <p className="error">{emailError}</p>
+                    <label className="label">Password</label>
                     <input 
                         type="password" 
-                        className="field" 
+                        className="field form" 
                         name="password" 
-                        placeholder="password" 
+                        placeholder="Type in password..." 
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <p className="errorMsg">{passwordError}</p>
+                    <p className="error">{passwordError}</p>
 
-                    <button onClick={handleSignIn} type="submit" className="btn" >
+                    <button onClick={handleSignIn} className="signIn btn" type="submit" >
                         SIGN IN! <HiArrowRight /> 
                     </button>
 
-                    <p onClick={() => setLoggedState("notLogged")} >
+                    <p className="goBack btn" onClick={() => {setLoggedState("notLogged"); clearInputs(); clearErrors();}} >
                         <HiArrowLeft /> GO BACK
                     </p> 
                 </div>
@@ -205,48 +209,49 @@ function User(props){
                 <div className="user">
                 <div className="login">
 
-                <label>Email</label>                     
+                <label className="label">Email</label>                     
                 <input 
                     type="text" 
                     required 
                     value={email}
-                    className="field"
+                    className="field form"
                     name="email"
-                    placeholder="email"
+                    placeholder="Type in email..."
                     onChange = { e => {setEmail(e.target.value)} }
                 />
-                <p>{emailError}</p>
+                <p className="error">{emailError}</p>
 
                 
-                <label>Nick</label>                     
+                <label className="label">Nick</label>                     
                 <input 
                     type="text" 
                     required 
                     value={userNick}
-                    className="field"
+                    className="field form"
                     name="nick"
-                    placeholder="nick"
+                    placeholder="Type in nick..."
                     onChange = { e => {setUserNick(e.target.value)} }
                 />
                 {/* <p>{emailError}</p>  tu można by zrobić sprawdzenie czy nick już nie jest zajęty ale po co xDDD*/}
+                <p></p>
 
-                <label>Password</label>
+                <label className="label">Password</label>
                 <input 
                     type="password" 
-                    className="field"
+                    className="field form"
                     required
                     name="password" 
-                    placeholder="password" 
+                    placeholder="Type in password..." 
                     value={password}
                     onChange = { e => setPassword(e.target.value)}
                 />
-                <p>{passwordError}</p>
+                <p className="error">{passwordError}</p>
 
-                <button className="btn" onClick={handleSignUp} >
+                <button className="btn signUp" onClick={handleSignUp} >
                     SIGN UP! <HiArrowRight />
                 </button>
 
-                <p onClick={() => setLoggedState("notLogged")} >
+                <p className="goBack btn" onClick={() => {setLoggedState("notLogged"); clearInputs(); clearErrors();}} >
                     <HiArrowLeft /> GO BACK
                 </p> 
 
@@ -261,11 +266,11 @@ function User(props){
                     </div>
                     <p id="username"> {userNick} </p>
                     <div id="description"> {userDesc} </div>
-                    <button id="editBtn" onClick={() => setLoggedState("editing")} >
-                        EDIT <GoPencil />
+                    <button className="editBtn btn" onClick={() => setLoggedState("editing")} >
+                        EDIT ACCOUNT <GoPencil style={{"fontSize": "1.2em"}} />
                     </button>
 
-                    <p onClick={handleSignOut}>
+                    <p className="signOut btn" onClick={handleSignOut}>
                         SIGN OUT <GoSignOut />
                     </p>
 
@@ -277,39 +282,47 @@ function User(props){
             return(
                 <div className="user" >
                 <div className="login">
-                <label>Your Photo URL</label>                     
+                <label className="label">Your Photo URL</label>                     
                 <input 
                     type="text" 
                     required 
-                    value={userImageUrl}
-                    className="field"
-                    placeholder="URL"
+                    value={userImageUrl==defaultImg?'':userImageUrl}
+                    className="field form"
+                    placeholder="Type in new URL..."
                     onChange = { e => {setUserImageUrl(e.target.value)} }
                 />
-                <label>Your Nick</label> 
+                <label className="label">Your Nick</label> 
                 <input 
                     type="text" 
                     required 
                     value={userNick}
-                    className="field"
-                    placeholder="Nick"
+                    className="field form"
+                    placeholder="Type in new Nick..."
                     onChange = { e => {setUserNick(e.target.value)} }
                 />
-                <label>Your Description</label> 
-                <input 
+                <label className="label">Your Description</label> 
+                <textarea 
                     type="text" 
                     required 
                     value={userDesc}
-                    className="field"
-                    placeholder="Description"
+                    className="field form"
+                    placeholder="Type in new Description..."
                     onChange = { e => {setUserDesc(e.target.value)} }
                 />
-                <button onClick={() => {
+                <br></br>
+                <button className="saveBtn btn" onClick={() => {
                     handleEdit();
                     setLoggedState("logged");
                 }} >SAVE</button>
                 </div>
+
+                <p className="goBack btn" onClick={() => {setLoggedState("logged");}} >
+                    <HiArrowLeft /> GO BACK
+                </p> 
+
                 </div>
+
+                
             );
         default: return;
     }

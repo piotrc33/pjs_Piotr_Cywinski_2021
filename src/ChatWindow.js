@@ -28,6 +28,8 @@ function ChatWindow(props) {
         messagesRef.get().then(doc => {
             const allMessages = doc.data().all;
             setMessages(allMessages);
+        }).catch(err => {
+
         });
     }
 
@@ -35,6 +37,8 @@ function ChatWindow(props) {
         usersRef.get().then(doc => {
             //console.log(doc);
             setUsers(doc.docs);
+        }).catch(err => {
+            
         })    
     }, [])
 
@@ -44,7 +48,10 @@ function ChatWindow(props) {
     }, [])
 
     useEffect(() => {
-        const msgRefresh = setInterval(() => {getMessages()}, 10000);
+        let msgRefresh
+        msgRefresh = setInterval(() => {getMessages()}, 1500);
+        console.log("odswiezono")
+
         return () => {
             clearInterval(msgRefresh);
         }
@@ -69,7 +76,7 @@ function ChatWindow(props) {
                     }
                 })
             }
-        })
+        }, [messages])
         // console.log("Aktualny użytkownik: " + user)
         // console.log(messages);
         // console.log(uarr)
@@ -98,22 +105,6 @@ function ChatWindow(props) {
                             </div>)
                         })
                     }
-
-                    {/* <div className="chat" onClick={() => {
-                        setChatView("chat");
-                        setTo("kondziu");
-                    }}>
-                        <img className="min-user-img" src="https://i.guim.co.uk/img/media/684c9d087dab923db1ce4057903f03293b07deac/205_132_1915_1150/master/1915.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=14a95b5026c1567b823629ba35c40aa0" />
-                        <p className="chat-username"> {chats[0].nick} </p>
-                        <p className="userDesc" > hejka </p>
-                    </div>
-
-                    <div className="chat" onClick={() => setChatView("chat")} >
-                        <img className="min-user-img" src="https://img-ovh-cloud.zszywka.pl/0/0088/5872-cat-pictures-cat-breeds-funny-cat-l.jpg" />
-                        <p className="chat-username"> mati</p>
-                        <p className="userDesc" >mój dobry znajomy</p>
-                    </div> */}
-
                 </div>
             );
         case "chat":
@@ -126,7 +117,7 @@ function ChatWindow(props) {
             return(
                 
                 <div className="chat-window">
-                    <h1 style={{margin: "auto"}} >Please sign in to see Your messages</h1>
+                    <h1 style={{margin: "auto"}} >Please sign in to see Your messages or sign up to start messaging!</h1>
                 </div>
             );
 
